@@ -1,0 +1,57 @@
+{% extends 'contact_base.html' %}
+
+{% block content %}
+
+
+<h2>Home Page</h2>
+<nav style="margin-bottom: 10px;">
+    <div style="margin: 0;">
+        <a style="margin-right: .5rem; margin-left: 0; padding-left: 0;" href="add/">Add a contact</a>
+        <a style="margin: .5rem;" href="update/">Update Contact Page</a>
+        <a style="margin: .5rem;" href="delete/">Delete Contact Page</a>
+    </div>
+</nav>
+<nav>
+    <div style="margin:0">
+        {% if not user %}
+        <a href="{% url 'authorize-admin' %}">Login</a>
+        {% else %}
+        <a href="{% url 'unauthorize-admin' %}">Logout</a>
+        {% endif %}
+    </div>
+</nav>
+
+<form style="margin-top: 3rem; margin-bottom: 2rem;" method="GET" action="{% url 'home' %}">
+    <input style="display: block;" type="text" name="query" placeholder="Search by name or email"
+        value="{{ request.GET.query }}">
+    <button style="margin-top: 10px;" type="submit">Search</button>
+</form>
+<div>
+    <a href="{% url 'home' %}">
+        <button style="font-size: medium;" type="button">Reset</button>
+    </a>
+</div>
+<div>
+    {% if contacts %}
+    <table style="width: 900px;">
+        <tr>
+            <th style="width: 150px;">First Name</th>
+            <th style="width: 350px;">Email</th>
+            <th>Phone</th>
+            <th>Details</th>
+        </tr>
+        {% for contact in contacts %}
+        <tr>
+            <td>{{contact.first_name}}</td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.phone}}</td>
+            <td><a href="{% url 'contact-detail' contact.id %}">Details</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3>Currently no contacts available.</h3>
+    <h3>Add contacts to see their data.</h3>
+    {% endif %}
+</div>
+{% endblock %}

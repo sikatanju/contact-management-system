@@ -1,0 +1,30 @@
+{% extends 'contact_base.html' %}
+
+{% block content %}
+
+<h2>Delete Page</h2>
+<nav>
+    <div>
+        <a href="/contact/">Back to home page</a>
+    </div>
+</nav>
+<div>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>________</th>
+        </tr>
+        {% for contact in contacts %}
+        <tr>
+            <td>{{contact.first_name}}</td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.phone}}</td>
+            <td><a href="{% url 'delete-contact' contact.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

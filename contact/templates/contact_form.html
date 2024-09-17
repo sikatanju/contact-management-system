@@ -1,0 +1,32 @@
+{% extends 'contact_base.html' %}
+
+{% block content %}
+<nav>
+    <h5><a href="{% url 'home' %}">Back to Home page</a></h5>
+</nav>
+{% if form %}
+<h2 style="margin-top: 0;">Update Contact</h2>
+{% else %}
+<h2 style="margin-top: 0;">Add a Contact</h2>
+{% endif %}
+
+<div>
+
+    {% if error %}
+    <h3 style="color: red;">You can't update salary or designation.</h3>
+    {% endif %}
+</div>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ contact_form }}
+    {% if form %}
+    <button type="submit">Update</button>
+    {% else %}
+    <button type="submit">Add</button>
+    {% endif %}
+
+</form>
+
+{% endblock %}

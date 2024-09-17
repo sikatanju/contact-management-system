@@ -1,0 +1,30 @@
+{% extends 'contact_base.html' %}
+
+{% block content %}
+
+
+<h2>Contact Detail Page</h2>
+<div>
+    <a style="margin: .5rem;" href="/contact/">Back to home page</a>
+</div>
+<div>
+    {% if contact %}
+    <table style="width: 900px;">
+        <tr>
+            <th style="width: 150px;">First Name</th>
+            <th style="width: 150px;">Last Name</th>
+            <th style="width: 350px;">Email</th>
+            <th style="width: 350px;">Phone</th>
+            <th style="width: 350px;">Address</th>
+        </tr>
+        <tr>
+            <td>{{contact.first_name}}</td>
+            <td>{{contact.last_name}}</td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.phone}}</td>
+            <td>{{contact.address}}</td>
+        </tr>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

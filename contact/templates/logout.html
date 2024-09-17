@@ -1,0 +1,20 @@
+{% extends 'contact_base.html' %}
+
+{% block content %}
+
+{% if user %}
+<div>
+    <h3>Logged Out sucessfully.</h3>
+</div>
+{% else %}
+<div>
+    <h3>You're already logged out.</h3>
+</div>
+{% endif %}
+<nav style="padding: 10px;"></nav>
+<div>
+    <a style="margin: .5rem;" href="/contact/">Back to home page</a>
+</div>
+</nav>
+
+{% endblock %}
