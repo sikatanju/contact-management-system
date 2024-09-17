@@ -141,7 +141,7 @@ def update_an_contact(request,pk):
         
         return render(request, 'contact_form.html', {'contact_form': update_contact_form , 'form': 'update'})
 
-    except contact.DoesNotExist:
+    except Contact.DoesNotExist:
         return render(request, 'not_found.html')
 
 
@@ -166,5 +166,5 @@ def delete_an_contact(request, pk):
         contact.delete()
         return redirect(home)
 
-    except contact.DoesNotExist:
+    except Contact.DoesNotExist:
         return render(request, 'not_found.html')
